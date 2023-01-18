@@ -81,8 +81,54 @@ public class SortMethods {
 	 * @param sortList			List of City objects to sort
 	 */
 	public void mergeSort(List<City> sortList) {
-		List<City> left = new ArrayList<City>(sortList.length / 2);
+		List<City> left = new ArrayList<City>(sortList.size() / 2);
+		List<City> right = new ArrayList<City>(sortList.size() - sortList.size() / 2);
+		for(int i = 0; i < sortList.size(); i++) {
+			if(i < sortList.size() / 2) {
+				left.set(i, sortList.get(i));
+			}
+			else {
+				right.set(i - sortList.size() / 2, sortList.get(i));
+			}
+		}
 		
+		if(left.size() > 2) {
+			mergeSort(left);
+		}
+		else {
+			bubbleSort(left);
+		}
+		if(right.size() > 2) {
+			mergeSort(right);
+		}
+		else {
+			bubbleSort(right);
+		}
 		
+		int l = 0, r = 0, counter = 0;
+		while(l < left.size() && r < right.size()) {
+			if(left.get(l).compareTo(right.get(r)) <= 0) {
+				sortList.set(counter, left.get(l));
+				l++;
+				counter++;
+			}
+			else if(right.get(r).compareTo(left.get(l)) < 0) {
+				sortList.set(counter, right.get(r));
+				r++;
+				counter++;
+			}
+		}
+		if(l == left.size()) {
+			for(int i = r; i < right.size(); i++) {
+				sortList.set(counter, right.get(i));
+				counter++;
+			}
+		}
+		if(r == right.size()) {
+			for(int i = l; i < left.size(); i++) {
+				sortList.set(counter, left.get(i));
+				counter++;
+			}
+		}
 	}
 }
