@@ -316,6 +316,6 @@ public class Population {
 		}
 		startMillisec = System.currentTimeMillis();
 		nameCities = leastPop(nameCities);
-		printData(50, nameCities);
+		printData(nameCities.size(), nameCities);
 	}
 }
