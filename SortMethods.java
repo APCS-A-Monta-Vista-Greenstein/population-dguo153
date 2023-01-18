@@ -85,10 +85,10 @@ public class SortMethods {
 		List<City> right = new ArrayList<City>(sortList.size() - sortList.size() / 2);
 		for(int i = 0; i < sortList.size(); i++) {
 			if(i < sortList.size() / 2) {
-				left.set(i, sortList.get(i));
+				left.add(sortList.get(i));
 			}
 			else {
-				right.set(i - sortList.size() / 2, sortList.get(i));
+				right.add(sortList.get(i));
 			}
 		}
 		
