@@ -111,7 +111,7 @@ public class Population {
 	 */
 	public void loadData() {
 		Scanner infile = FileUtils.openToRead(DATA_FILE);
-		infile.useDelimiter("[\t\n]")
+		infile.useDelimiter("[\t\n]");
 		while(infile.hasNextLine()) {
 			String state = infile.next();
 			String name = infile.next();
