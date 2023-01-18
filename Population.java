@@ -111,8 +111,8 @@ public class Population {
 	 */
 	public void loadData() {
 		Scanner infile = FileUtils.openToRead(DATA_FILE);
-		infile.useDelimiter("[\t\n]");
-		while(infile.hasNextLine()) {
+		infile.useDelimiter("\t|\n");
+		while(infile.hasNextLine() && infile.hasNext()) {
 			String state = infile.next();
 			String name = infile.next();
 			String designation = infile.next();
@@ -135,7 +135,7 @@ public class Population {
 			System.out.print(String.format("%5s ", "" + i + ": "));
 			System.out.println(printList.get(i - 1).toString());
 		} 
-		System.out.println("\nElapsed time: " + (endMillisec - startMillisec) + "\n");
+		System.out.println("\nElapsed time: " + (endMillisec - startMillisec) + " milliseconds.\n");
 	}
 	
 	/**
