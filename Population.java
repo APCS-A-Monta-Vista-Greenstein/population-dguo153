@@ -290,7 +290,8 @@ public class Population {
 		}
 		startMillisec = System.currentTimeMillis();
 		stateCities = mostPop(stateCities);
-		printData(50, stateCities);
+		endMillisec = System.currentTimeMillis();
+		printData(Math.min(50, stateCities.size()), stateCities);
 	}
 	
 	/**
@@ -315,7 +316,8 @@ public class Population {
 			}
 		}
 		startMillisec = System.currentTimeMillis();
-		nameCities = leastPop(nameCities);
+		nameCities = mostPop(nameCities);
+		endMillisec = System.currentTimeMillis();
 		printData(nameCities.size(), nameCities);
 	}
 }
