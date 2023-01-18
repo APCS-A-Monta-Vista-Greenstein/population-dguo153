@@ -177,7 +177,7 @@ public class Population {
 	 * @param sortList		list of cities to be sorted
 	 */
 	public void insertionSortName(List<City> sortList) {
-		List<City> sortList = new ArrayList<city>(sortList.size());
+		List<City> sorted = new ArrayList<City>(sortList.size());
 		sorted.add(sortList.get(0));
 		for(int outer = 1; outer < sortList.size(); outer++) {
 			int inner = sorted.size() - 1;
@@ -192,7 +192,7 @@ public class Population {
 			}
 		}
 		for(int i = 0; i < sortList.size(); i++) {
-			sortList.get(i) = sorted.get(i);
+			sortList.set(i, sorted.get(i));
 		}
 	}
 	
@@ -221,20 +221,20 @@ public class Population {
 		}
 		
 		if(left.size() > 2) {
-			mergeSort(left);
+			mergeSortName(left);
 		}
 		else {
-			if(left.size() == 2 && left.get(0).getName().compareTo(left.get(1).getName())) {
+			if(left.size() == 2 && left.get(0).getName().compareTo(left.get(1).getName()) > 0) {
 				City temp = left.get(0);
 				left.set(0, left.get(1));
 				left.set(1, temp);
 			}
 		}
 		if(right.size() > 2) {
-			mergeSort(right);
+			mergeSortName(right);
 		}
 		else {
-			if(right.size() == 2 && right.get(0).getName().compareTo(right.get(1).getName())) {
+			if(right.size() == 2 && right.get(0).getName().compareTo(right.get(1).getName()) > 0) {
 				City temp = right.get(0);
 				right.set(0, right.get(1));
 				right.set(1, temp);
