@@ -110,7 +110,7 @@ public class Population {
 	 * the entries into the list
 	 */
 	public void loadData() {
-	/*	Scanner infile = FileUtils.openToRead(DATA_FILE);
+		Scanner infile = FileUtils.openToRead(DATA_FILE);
 		infile.useDelimiter("[\t\n]")
 		while(infile.hasNextLine()) {
 			String state = infile.next();
@@ -119,7 +119,7 @@ public class Population {
 			int population = infile.nextInt();
 			City c = new City(name, state, designation, population);
 			cities.add(c);
-		} */
+		} 
 	}
 	
 	/**
