@@ -17,7 +17,7 @@ public class SortMethods {
 	public void bubbleSort(List<City> sortList) {
 		for(int outer = sortList.size() - 1; outer > 0; outer--) {
 			for(int inner = 0; inner < outer; inner++) {
-				if(sortList.get(inner).compareTo(sortlist.get(inner + 1)) > 0) {
+				if(sortList.get(inner).compareTo(sortList.get(inner + 1)) > 0) {
 					swap(sortList, inner, inner + 1);
 				}
 			}
@@ -57,7 +57,7 @@ public class SortMethods {
 	 * @param sortList			List of City objects to sort
 	 */
 	public void insertionSort(List<City> sortList) {
-		List<City> sortList = new ArrayList<city>(sortList.size());
+		List<City> sorted = new ArrayList<City>(sortList.size());
 		sorted.add(sortList.get(0));
 		for(int outer = 1; outer < sortList.size(); outer++) {
 			int inner = sorted.size() - 1;
@@ -72,7 +72,7 @@ public class SortMethods {
 			}
 		}
 		for(int i = 0; i < sortList.size(); i++) {
-			sortList.get(i) = sorted.get(i);
+			sortList.set(i, sorted.get(i));
 		}
 	}
 	
