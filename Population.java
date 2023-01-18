@@ -129,12 +129,12 @@ public class Population {
 	 * @param printList		list of cities to be printed
 	 */
 	public void printData(int x, List<City> printList) {
-	/*	System.out.println(String.format("%5s %-22s %-22s %-12s %12s", " ",
+		System.out.println(String.format("%5s %-22s %-22s %-12s %12s", " ",
 											"state", "city", "type", "population")); 
 		for(int i = 1; i <= x; i++) {
 			System.out.print(String.format("%5s ", "" + i + ": "));
 			System.out.println(printList.get(i - 1).toString());
-		} */
+		} 
 		System.out.println("\nElapsed time: " + (endMillisec - startMillisec) + "\n");
 	}
 	
@@ -144,7 +144,7 @@ public class Population {
 	 * @return				the sorted list
 	 */
 	public List<City> leastPop(List<City> sortList) {
-	//	sort.selectionSort(sortList);
+		sort.selectionSort(sortList);
 		endMillisec = System.currentTimeMillis();
 		return sortList;
 	}
@@ -155,7 +155,7 @@ public class Population {
 	 * @return				the sorted list
 	 */
 	public List<City> mostPop(List<City> sortList) {
-	//	sort.mergeSort(sortList);
+		sort.mergeSort(sortList);
 		List<City> backwardsList = new ArrayList<City>();
 		for(int i = sortList.size(); i >= 0; i--) {
 			backwardsList.add(sortList.get(i));
@@ -168,8 +168,32 @@ public class Population {
 	 * Sorts cities in ascending name order (insertion sort)
 	 */
 	public void firstName() {
-		
+		insertionSortName(cities);
 		endMillisec = System.currentTimeMillis();
+	}
+	
+	/**
+	 * Insertion sort algorithm - descending name order
+	 * @param sortList		list of cities to be sorted
+	 */
+	public void insertionSortName(List<City> sortList) {
+		List<City> sortList = new ArrayList<city>(sortList.size());
+		sorted.add(sortList.get(0));
+		for(int outer = 1; outer < sortList.size(); outer++) {
+			int inner = sorted.size() - 1;
+			while(inner > 0 && sorted.get(inner - 1).getName(). compareTo(sortList.get(outer).getName()) > 0) {
+				inner--;
+			}
+			if(sorted.get(sorted.size() - 1).getName().compareTo(sortList.get(outer).getName()) < 0) {
+				sorted.add(sortList.get(outer));
+			}
+			else {
+				sorted.add(inner, sortList.get(outer));
+			}
+		}
+		for(int i = 0; i < sortList.size(); i++) {
+			sortList.get(i) = sorted.get(i);
+		}
 	}
 	
 	/**
@@ -185,7 +209,63 @@ public class Population {
 	 * @param sortList		list of cities to be sorted
 	 */
 	public void mergeSortName(List<City> sortList) {
+		List<City> left = new ArrayList<City>(sortList.size() / 2);
+		List<City> right = new ArrayList<City>(sortList.size() - sortList.size() / 2);
+		for(int i = 0; i < sortList.size(); i++) {
+			if(i < sortList.size() / 2) {
+				left.set(i, sortList.get(i));
+			}
+			else {
+				right.set(i - sortList.size() / 2, sortList.get(i));
+			}
+		}
 		
+		if(left.size() > 2) {
+			mergeSort(left);
+		}
+		else {
+			if(left.size() == 2 && left.get(0).getName().compareTo(left.get(1).getName())) {
+				City temp = left.get(0);
+				left.set(0, left.get(1));
+				left.set(1, temp);
+			}
+		}
+		if(right.size() > 2) {
+			mergeSort(right);
+		}
+		else {
+			if(right.size() == 2 && right.get(0).getName().compareTo(right.get(1).getName())) {
+				City temp = right.get(0);
+				right.set(0, right.get(1));
+				right.set(1, temp);
+			}
+		}
+		
+		int l = 0, r = 0, counter = 0;
+		while(l < left.size() && r < right.size()) {
+			if(left.get(l).getName().compareTo(right.get(r).getName()) <= 0) {
+				sortList.set(counter, left.get(l));
+				l++;
+				counter++;
+			}
+			else if(right.get(r).getName().compareTo(left.get(l).getName()) < 0) {
+				sortList.set(counter, right.get(r));
+				r++;
+				counter++;
+			}
+		}
+		if(l == left.size()) {
+			for(int i = r; i < right.size(); i++) {
+				sortList.set(counter, right.get(i));
+				counter++;
+			}
+		}
+		if(r == right.size()) {
+			for(int i = l; i < left.size(); i++) {
+				sortList.set(counter, left.get(i));
+				counter++;
+			}
+		}
 	}
 	
 	/**
