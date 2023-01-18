@@ -157,7 +157,7 @@ public class Population {
 	public List<City> mostPop(List<City> sortList) {
 		sort.mergeSort(sortList);
 		List<City> backwardsList = new ArrayList<City>();
-		for(int i = sortList.size(); i >= 0; i--) {
+		for(int i = sortList.size() - 1; i >= 0; i--) {
 			backwardsList.add(sortList.get(i));
 		}
 		endMillisec = System.currentTimeMillis();
